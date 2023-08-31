@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alessandra Campos-Vue</title>
+  </head>
+  <body>
+    <h3>Learning Vue</h3>
+  </body>
+  <div id="app">
+    <p v-if="message.length % 2===0">Even:{{message}}</p>
+    <p v-else>Odd:{{message.toUpperCase()}}</p>
+    <ul v-for="item in listOfNumbers">
+      <li>{{item.name}}</li>
+      <ul>
+        <li v-for="number in item.list">{{number}}</li>
+      </ul>
+    </ul>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    //Vue 3
+    const { createApp } = Vue;
+
+    //Vue 2
+    //new Vue()
+
+    //Object
+    const app = createApp({
+      data() {
+        return {
+          message: "Hello",
+          /*  listOfNumbers: [1, 2, 3, 4, 5], */
+          listOfNumbers: [
+            { name: "Ale", id: "1", list: [1, 2, 3, 4, 5] },
+            { name: "Hermann", id: "2", list: [1, 2, 3, 4, 5] },
+            { name: "Mario", id: "2", list: [1, 2, 3, 4, 5] },
+          ],
+        };
+      },
+    });
+    app.mount("#app");
+  </script>
+</html>
