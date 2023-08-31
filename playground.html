@@ -7,12 +7,11 @@
     <title>Playground — Complete Intro to Vue 3</title>
   </head>
   <body>
-    <h1>Hello Frontend Masters!</h1>
     <div id="app">
-      <h1>Counter</h1>
-      <p>{{count}}</p>
-      <h1>{{incrementAmount}}</h1>
-      <button @click="incrementCount(10,event)">Increment Count</button>
+      <h1>{{displayTitle}}</h1>
+
+      <button @click="incrementCount">Increment Count</button>
+      <div>{{count}}</div>
       <div>
         <label for="incrementAmount">Increment by:</label>
         <input type="number" v-model="incrementAmount" />
@@ -37,6 +36,7 @@
       const app = createApp({
         data() {
           return {
+            counterTitle: "Counter-Learning Vue",
             count: 10,
             incrementAmount: 10,
             message: "Hello it works",
@@ -69,9 +69,26 @@
             ],
           };
         },
+        computed: {
+          displayTitle() {
+            if (this.count > 20) {
+              return "Counter-Learning Vue-Very Long";
+            } else {
+              return "Counter-Learning Vue";
+            }
+          },
+        },
         methods: {
           incrementCount() {
             this.count += this.incrementAmount;
+          },
+        },
+        watch: {
+          count(newValue) {
+            console.log(newValue);
+            if (newValue > 20) {
+              this.counterTitle += "Very Long";
+            }
           },
         },
       });
