@@ -12,6 +12,11 @@
       <ul v-else>
         <li v-for="character in characterList">{{character.name}}</li>
       </ul>
+      <p>
+        <span v-for="(character,index) in characterList"
+          >{{character.name}}{{index===characterList.length-1?"":" , "}}
+        </span>
+      </p>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
