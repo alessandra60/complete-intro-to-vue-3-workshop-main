@@ -10,24 +10,54 @@
     <div id="app">
       <h3 v-if="characterList.length===0">There are no characters</h3>
       <ul v-else>
-        <li v-for="character in characterList">{{character.name}}</li>
+        <li v-for="character in characterList">
+          <p>{{character.name}}</p>
+          <button @click="favoriteCharacter(character)">Favorite</button>
+        </li>
       </ul>
-      <p>
+      <h2>Favorite characters</h2>
+      <ul v-if="favoriteList.length>0">
+        <li v-for="character in favoriteList">{{character}}</li>
+      </ul>
+      <p v-else>No favorite characters yet</p>
+      <h2>New character</h2>
+      <!-- <pre>
+        {{newCharacter}}
+        //Help to see the node
+      </pre> -->
+      <label for="character-name">Name</label>
+      <input
+        type="text"
+        v-model="newCharacter.name"
+        @keyup.enter="addNewCharacter"
+      />
+      <!--  <p>
         <span v-for="(character,index) in characterList"
           >{{character.name}}{{index===characterList.length-1?"":" , "}}
         </span>
-      </p>
+      </p> -->
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
       Vue.createApp({
         data: () => ({
+          newCharacter: { name: "" },
           characterList: [
             { name: "Ruby" },
             { name: "Ale" },
             { name: "Hermann" },
           ],
+          favoriteList: [],
         }),
+        methods: {
+          addNewCharacter() {
+            this.characterList.push(this.newCharacter);
+            this.newCharacter = { name: "" };
+          },
+          favoriteCharacter(character) {
+            this.favoriteList.push(character);
+          },
+        },
       }).mount("#app");
     </script>
   </body>

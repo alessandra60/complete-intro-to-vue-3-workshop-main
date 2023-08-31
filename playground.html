@@ -12,7 +12,7 @@
       <h1>Counter</h1>
       <p>{{count}}</p>
       <h1>{{incrementAmount}}</h1>
-      <button v-on:click="incrementCount">Increment Count</button>
+      <button @click="incrementCount(10,event)">Increment Count</button>
       <div>
         <label for="incrementAmount">Increment by:</label>
         <input type="number" v-model="incrementAmount" />
